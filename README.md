@@ -43,7 +43,7 @@ creating content under `/dist/*`.
 
 ## Working with JSARToolkit
 
-TODO
+![AR Marker](https://github.com/baldwicc/jsar-demo/raw/master/app/media/marker.png "AR Marker")
 
 ### Tests
 
