@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
   // Project configuration.
   grunt.initConfig({
@@ -11,29 +11,8 @@ module.exports = function(grunt) {
       '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
       '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
       ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
+
     // Task configuration.
-    clean: {
-      files: ['dist']
-    },
-    concat: {
-      options: {
-        banner: '<%= banner %>',
-        stripBanners: true
-      },
-      dist: {
-        src: ['components/requirejs/require.js', '<%= concat.dist.dest %>'],
-        dest: 'dist/require.js'
-      },
-    },
-    uglify: {
-      options: {
-        banner: '<%= banner %>'
-      },
-      dist: {
-        src: '<%= concat.dist.dest %>',
-        dest: 'dist/require.min.js'
-      },
-    },
     qunit: {
       files: ['test/**/*.html']
     },
@@ -46,9 +25,9 @@ module.exports = function(grunt) {
       },
       app: {
         options: {
-          jshintrc: 'app/.jshintrc'
+          jshintrc: 'app/js/.jshintrc'
         },
-        src: ['app/**/*.js']
+        src: ['app/js/**/*.js']
       },
       test: {
         options: {
@@ -74,10 +53,13 @@ module.exports = function(grunt) {
     requirejs: {
       compile: {
         options: {
-          name: 'config',
-          mainConfigFile: 'app/config.js',
-          out: '<%= concat.dist.dest %>',
-          optimize: 'none'
+          mainConfigFile: 'app/js/config.js',
+          appDir: 'app/',
+          dir: 'dist/',
+          optimize: 'uglify2',
+          modules: [{
+            name: "main"
+          }]
         }
       }
     },
@@ -85,25 +67,14 @@ module.exports = function(grunt) {
       development: {
         options: {
           keepalive: true,
+          port: 8000,
         }
       },
       production: {
         options: {
           keepalive: true,
-          port: 8000,
-          middleware: function(connect, options) {
-            return [
-              // rewrite requirejs to the compiled version
-              function(req, res, next) {
-                if (req.url === '/components/requirejs/require.js') {
-                  req.url = '/dist/require.min.js';
-                }
-                next();
-              },
-              connect.static(options.base),
-
-            ];
-          }
+          port: 8888,
+          base: 'dist'
         }
       }
     }
@@ -120,8 +91,19 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'qunit', 'clean', 'requirejs', 'concat', 'uglify']);
-  grunt.registerTask('preview', ['connect:development']);
-  grunt.registerTask('preview-live', ['default', 'connect:production']);
+  grunt.registerTask('default', [
+    //    'jshint',
+    'qunit',
+    'requirejs',
+  ]);
+
+  grunt.registerTask('preview', [
+    'connect:development'
+  ]);
+
+  grunt.registerTask('preview-live', [
+    'default',
+    'connect:production'
+  ]);
 
 };

@@ -6,10 +6,9 @@
   "newcap": true,
   "noarg": true,
   "sub": true,
-  "undef": true,
+  "undef": false,
   "unused": true,
   "boss": true,
   "eqnull": true,
-  "browser": true,
-  "predef": ["require","define", "alert"]
+  "node": true
 }
