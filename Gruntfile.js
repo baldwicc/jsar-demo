@@ -16,6 +16,7 @@ module.exports = function (grunt) {
     qunit: {
       files: ['test/**/*.html']
     },
+    clean: ['dist'],
     jshint: {
       gruntfile: {
         options: {
@@ -56,11 +57,29 @@ module.exports = function (grunt) {
           mainConfigFile: 'app/js/config.js',
           appDir: 'app/',
           dir: 'dist/',
-          optimize: 'uglify2',
+          baseUrl: 'js',
+          optimize: 'none',
           modules: [{
-            name: "main"
+            name: "main",
+            include: ["requireLib"]
           }]
         }
+      }
+    },
+    replace: {
+      requirejs: {
+        src: ['dist/**/*.js', 'dist/**/*.htm', 'dist/**/*.html'],
+        overwrite: true,
+        replacements: [{
+          from: /\.\.\/bower_components\/requirejs\/require\.js/,
+          to: "js/require.js"
+        }]
+      }
+    },
+    rename: {
+      requirejs: {
+        src: 'dist/js/main.js',
+        dest: 'dist/js/require.js'
       }
     },
     connect: {
@@ -89,12 +108,17 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-text-replace');
+  grunt.loadNpmTasks('grunt-rename');
 
   // Default task.
   grunt.registerTask('default', [
     //    'jshint',
+    'clean',
     'qunit',
     'requirejs',
+    'replace:requirejs',
+    'rename:requirejs'
   ]);
 
   grunt.registerTask('preview', [

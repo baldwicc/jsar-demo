@@ -1,7 +1,7 @@
 /* jshint undef: true */
 define([
   "jquery",
-  "json!photos.json",
+  "json!../media/photos.json",
   "components/JSARToolKit/JSARToolKit",
   "components/magi/src/magi"
 ], function ($, Photos) {
