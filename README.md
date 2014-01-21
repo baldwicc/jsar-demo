@@ -1,6 +1,7 @@
 # jsar demo
 
-First attempt at hacking away with JSARToolkit, Canvas and WebRTC
+First attempt at hacking away with JSARToolkit, Canvas and WebRTC.  
+Lifted straight from www.html5rocks.com/en/tutorials/webgl/jsartoolkit_webrtc
 
 ## Getting Started
 
@@ -32,20 +33,17 @@ If you'd like to run the compiled version, run
 ## Building the application
 
 This application uses requirejs to load the various modules in
-the app folder. However, upon build, all of these files are
-concatenated and minified together to create a small, compressed
-javascript file.
+the app folder.  It also uses the r.js optimizer to concatenate,
+minfiy and move all content from `app/` to `dist/`, ready for static
+deployment.
 
 Running `grunt` by itself will run through all of the steps of
 linting the javascript, building out dependencies and ultimately
-creating `/dist/require.js`.
+creating content under `/dist/*`.
 
-## Working with the scaffolded app
+## Working with JSARToolkit
 
-There's just enough to in place to get you going. Go ahead
-and make your changes to `index.htm`. You'll start your
-javascript work in `app/main.js` by requiring your first
-modules. Past that, well, the world is your oyster.
+TODO
 
 ### Tests
 
