@@ -9,6 +9,7 @@
   "devDependencies": {
     "text": "requirejs/text#~2.0.10",
     "JSARToolKit": "kig/JSARToolKit",
-    "magi": "kig/magi"
+    "magi": "kig/magi",
+    "bootstrap": "~3.0.3"
   }
 }
