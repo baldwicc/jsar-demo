@@ -23,7 +23,7 @@ define([
 			el: "webcam",
 
 			// use if you don't require a fallback
-			noFallback: false,
+			// noFallback: false,
 
 			extern: null,
 			append: true,
@@ -36,7 +36,7 @@ define([
 			mode: "callback",
 
 			// the flash fallback Url
-			swffile: "fallback/jscam_canvas_only.swf",
+			swffile: require.toUrl('components/getUserMedia.js/dist/fallback/jscam_canvas_only.swf'),
 
 			// quality of the fallback stream
 			quality: 85,
@@ -73,11 +73,21 @@ define([
 
 			} else {
 				//flash context
+				debugger;
 			}
 		},
-		error: function (error) {
-			alert('No camera available.');
-			log('An error occurred: [CODE ' + error.code + ']');
+
+		error: function (err) {
+			var msg;
+			if (err && err.code) {
+				msg = 'Code: ' + err.code;
+			} else if (err && !err.code) {
+				msg = 'Error: ' + err;
+			} else {
+				msg = 'Undefined error.';
+				debugger;
+			}
+			log('An error occurred: [' + msg + ']');
 		}
 	};
 
