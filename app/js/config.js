@@ -1,8 +1,9 @@
 require.config({
   baseUrl: 'js',
   paths: {
-    "requireLib": "../../bower_components/requirejs/require",
     "components": "../../bower_components",
+    "requireLib": "../../bower_components/requirejs/require",
+    "moment": "../../bower_components/moment/moment",
     "jquery": "../../bower_components/jquery/jquery",
     "text": "../../bower_components/text/text",
     "async": "../../bower_components/requirejs-plugins/src/async",

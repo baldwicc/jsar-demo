@@ -10,6 +10,7 @@
     "text": "requirejs/text#~2.0.10",
     "JSARToolKit": "kig/JSARToolKit",
     "magi": "kig/magi",
-    "bootstrap": "~3.0.3"
+    "bootstrap": "~3.0.3",
+    "moment": "moment/moment#~2.5.0"
   }
 }
