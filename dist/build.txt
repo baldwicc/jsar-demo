@@ -1,0 +1,17 @@
+
+css/styles.css
+----------------
+css/../../bower_components/bootstrap/dist/css/bootstrap.css
+css/../../bower_components/bootstrap/dist/css/bootstrap-theme.css
+css/styles.css
+
+js/main.js
+----------------
+C:/_workspace/jsar-demo/bower_components/requirejs/require.js
+C:/_workspace/jsar-demo/bower_components/jquery/jquery.js
+C:/_workspace/jsar-demo/bower_components/text/text.js
+C:/_workspace/jsar-demo/bower_components/requirejs-plugins/src/json.js
+json!../media/photos.json
+C:/_workspace/jsar-demo/bower_components/magi/src/magi.js
+C:/_workspace/jsar-demo/bower_components/JSARToolKit/JSARToolKit.js
+js/main.js
